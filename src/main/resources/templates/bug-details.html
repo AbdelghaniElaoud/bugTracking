@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <!-- Add your head content here -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Bug Details</h1>
+    <table class="table mt-4">
+        <tbody>
+        <tr>
+            <td>ID</td>
+            <td th:text="${bug.id}"></td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td th:text="${bug.title}"></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td th:text="${bug.description}"></td>
+        </tr>
+        <tr>
+            <td>Priority</td>
+            <td th:text="${bug.priority}"></td>
+        </tr>
+        <tr>
+            <td>Project</td>
+            <td th:text="${bug.project.getName()}"></td>
+        </tr>
+        <tr>
+            <td>Attached File</td>
+            <td>
+                <a th:if="${bug.attachmentPath}" th:href="@{'/bugs/download/' + ${bug.id}}" download="attachment" class="btn btn-primary">
+                    Download Attachment
+                </a>
+                <span th:unless="${bug.attachmentPath}">No Attachment</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{'/bugs/update/' + ${bug.id}}" class="btn btn-success">Update Bug</a>
+    <br>
+    <a href="/bugs" class="btn btn-secondary mt-3">Back to Bug List</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
